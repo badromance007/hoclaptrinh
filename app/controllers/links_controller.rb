@@ -40,6 +40,53 @@ class LinksController < ApplicationController
     end
   end
 
+  def linkpreview
+    require 'open-uri'
+    doc = Nokogiri::HTML(open(params[:url]), nil, 'UTF-8')
+             
+    title = ""
+    description = ""
+    url = ""
+    image_url = ""
+     
+    doc.xpath("//head//meta").each do |meta|
+        if meta['property'] == 'og:title'
+            title = meta['content']
+        elsif meta['property'] == 'og:description' || meta['name'] == 'description'
+            description = meta['content']
+        elsif meta['property'] == 'og:url'
+            url = meta['content']
+        elsif meta['property'] == 'og:image'
+            image_url = meta['content']
+        end
+    end
+     
+    if title == ""
+        title_node = doc.at_xpath("//head//title")
+        if title_node
+            title = title_node.text
+        elsif doc.title
+            title = doc.title
+        else
+            title = param_url
+        end
+    end
+     
+    if description ==""
+        #maybe search for content from BODY
+        description = title
+    end
+     
+    if url ==""
+        url = param_url
+    end
+     
+    render :json => {:title => title, :description => description, :url => url, :image_url => image_url} and return
+  end
+
+
+
+
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update

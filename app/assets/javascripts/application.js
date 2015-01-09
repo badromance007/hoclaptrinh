@@ -15,3 +15,55 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$( document ).on('page:load', function() {
+  // Handler for .ready() called.
+  $("#post_content").bind('paste', function(e) {
+      var el = $(this);
+   
+      setTimeout(function() {
+          var text = $(el).val();
+           
+          // send url to service for parsing
+          $.ajax('/linkpreview', {
+              type: 'POST',
+              data: { url: text },
+              success: function(data,textStatus,jqXHR ) {
+                  // handle received data
+                  $("#preview-title").text(data['title']);
+                  $("#preview-description").text(data['description']);
+                  $("#preview-image").attr('src', data['image_url']);
+                  $("#preview-url").text("By " + data['url']);
+              },
+              error: function() { alert("Extract link error"); }
+          });
+      }, 100);
+  });
+});
+
+// after the page is loaded
+$( document ).ready( function() {
+  // Handler for .ready() called.
+  $("#post_content").bind('paste', function(e) {
+      var el = $(this);
+   
+      setTimeout(function() {
+          var text = $(el).val();
+           
+          // send url to service for parsing
+          $.ajax('/linkpreview', {
+              type: 'POST',
+              data: { url: text },
+              success: function(data,textStatus,jqXHR ) {
+                  // handle received data
+                  $("#preview-title").text(data['title']);
+                  $("#preview-description").text(data['description']);
+                  $("#preview-image").attr('src', data['image_url']);
+                  $("#preview-url").text("By " + data['url']);
+              },
+              error: function() { alert("error"); }
+          });
+      }, 100);
+  });
+});
