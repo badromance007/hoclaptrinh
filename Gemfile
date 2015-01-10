@@ -50,3 +50,4 @@ gem 'simple_form', '~> 3.1.0'
 
 gem 'nokogiri', '~> 1.6.5'
 gem 'gon', '~> 5.2.3'
+gem 'social-share-button', '~> 0.1.8'

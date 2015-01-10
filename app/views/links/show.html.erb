@@ -77,6 +77,9 @@
     Downvote
     <%= @link.get_downvotes.size %>
   <% end %>
+  <span class="glyphicon">
+    <%= social_share_button_tag("My Site") %>
+  </span>
 </div>
 
 <% if @link.user == current_user -%>
