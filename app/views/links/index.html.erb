@@ -64,6 +64,8 @@
       });
     </script>
 
+    <p>Tags: <%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
     <div class="btn-group">
       <a class="btn btn-default btn-sm" href="<%= link.url %>">Visit Link</a>
       <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
@@ -84,3 +86,9 @@
     </div>
   </div>
 <% end %>
+
+<div id="tag_cloud">
+  <% tag_cloud Link.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>

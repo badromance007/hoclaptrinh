@@ -61,6 +61,7 @@
       });
     </script>
 
+    <p>Tags: <%= raw @link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <div class="btn-group">
   <%= link_to 'Visit URL', @link.url, class: "btn btn-primary" %>

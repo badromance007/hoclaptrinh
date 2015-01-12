@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   root :to => "links#index"
   match "linkpreview" => "links#linkpreview", :via => [:post], :as => "linkpreview"
 
+  get 'tags/:tag', to: 'links#index', as: :tag
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

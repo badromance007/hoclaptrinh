@@ -28,6 +28,13 @@
       <p id="preview-url"></p>
     </div>
   <br>
+
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+
+  <br>
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-lg btn-primary" %>
   </div>
