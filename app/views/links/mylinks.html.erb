@@ -1,0 +1,49 @@
+<h1>My posts: </h1>
+
+<% @user_links.each do |link| %>
+  <div class="link row clearfix">
+    <h2>
+      <%= link_to link.title, link %><br>
+      <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.name %></small>
+    </h2>
+
+    <div>
+      <a class="preview-link" href="<%= link.url %>">
+        <div class="_<%= link.id %>" >
+          <img src="" class="preview-image">
+          <div class="preview-title" style="font-weight:bold">
+          </div>
+          <p class="preview-description"></p>
+          <p class="preview-url"></p>
+        </div>
+      </a>
+    </div>
+
+    <p>Tags: <%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
+    <div class="btn-group">
+      <a class="btn btn-default btn-sm" href="<%= link.url %>">Visit Link</a>
+      <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-chevron-up">
+        Upvote
+        <%= link.get_upvotes.size %>
+        </span>
+      <% end %>
+      <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-chevron-down">
+        Downvote
+        <%= link.get_downvotes.size %>
+        </span>
+      <% end %>
+      <span class="glyphicon">
+        <%= social_share_button_tag("My Site") %>
+      </span>
+    </div>
+  </div>
+<% end %>
+
+<div id="tag_cloud">
+  <% tag_cloud Link.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>

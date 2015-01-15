@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   root :to => "links#index"
   match "linkpreview" => "links#linkpreview", :via => [:post], :as => "linkpreview"
+  match "users/mylinks" => "links#mylinks", :via => [:get], :as => "mylinks"
 
   get 'tags/:tag', to: 'links#index', as: :tag
 

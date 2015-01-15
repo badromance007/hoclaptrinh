@@ -14,6 +14,10 @@ class LinksController < ApplicationController
     gon.links = Link.all
   end
 
+  def mylinks
+    @user_links = Link.where(user_id: current_user).order("created_at desc")
+  end
+
   # GET /links/1
   # GET /links/1.json
   def show
