@@ -37,7 +37,7 @@ $( document ).on('page:load', function() {
                   $("#preview-image").attr('src', data['image_url']);
                   $("#preview-url").text("By " + data['url']);
               },
-              error: function() { alert("Extract link error"); }
+              //error: function() { alert("Extract link error"); }
           });
       }, 100);
   });
