@@ -32,6 +32,7 @@ $( document ).on('page:load', function() {
               data: { url: text },
               success: function(data,textStatus,jqXHR ) {
                   // handle received data
+                  $("#link_title").val(data['title']);
                   $("#preview-title").text(data['title']);
                   $("#preview-description").text(data['description']);
                   $("#preview-image").attr('src', data['image_url']);
@@ -58,12 +59,13 @@ $( document ).ready( function() {
               data: { url: text },
               success: function(data,textStatus,jqXHR ) {
                   // handle received data
+                  $("#link_title").val(data['title']);
                   $("#preview-title").text(data['title']);
                   $("#preview-description").text(data['description']);
                   $("#preview-image").attr('src', data['image_url']);
                   $("#preview-url").text("By " + data['url']);
               },
-              error: function() { alert("error"); }
+              //error: function() { alert("error"); }
           });
       }, 100);
   });
