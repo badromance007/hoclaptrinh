@@ -32,7 +32,7 @@
                         $( "._<%= @link.id %> > .preview-image").attr('src', data['image_url']);
                         $( "._<%= @link.id %> > .preview-url").text("By " + data['url']);
                     },
-                    error: function() { alert("Extract link error"); }
+                   // error: function() { alert("Extract link error"); }
                 });
             }, 100);
        
@@ -54,7 +54,7 @@
                         $( "._<%= @link.id %> > .preview-image").attr('src', data['image_url']);
                         $( "._<%= @link.id %> > .preview-url").text("By " + data['url']);
                     },
-                    error: function() { alert("Extract link error"); }
+                    //error: function() { alert("Extract link error"); }
                 });
             }, 100);
        
