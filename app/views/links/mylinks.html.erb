@@ -10,11 +10,12 @@
     <div>
       <a class="preview-link" href="<%= link.url %>">
         <div class="_<%= link.id %>" >
-          <img src="" class="preview-image">
+          <img src="<%= link.image_url %>" class="preview-image">
           <div class="preview-title" style="font-weight:bold">
+            <%= link.title %>
           </div>
-          <p class="preview-description"></p>
-          <p class="preview-url"></p>
+          <p class="preview-description"><%= link.description %></p>
+          <p class="preview-url"><%= link.site_name.upcase %></p>
         </div>
       </a>
     </div>

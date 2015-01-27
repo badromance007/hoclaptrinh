@@ -58,6 +58,7 @@ class LinksController < ApplicationController
     description = ""
     url = ""
     image_url = ""
+    site_name = ""
      
     doc.xpath("//head//meta").each do |meta|
         if meta['property'] == 'og:title'
@@ -66,6 +67,10 @@ class LinksController < ApplicationController
             description = meta['content']
         elsif meta['property'] == 'og:url'
             url = meta['content']
+            start_slash = url.index('//')
+            end_slash = url.index("/", start_slash + 2) - 7
+            site_name = url.slice(start_slash + 2, end_slash)
+            #site_name =  end_slash
         elsif meta['property'] == 'og:image'
             image_url = meta['content']
         end
@@ -91,7 +96,7 @@ class LinksController < ApplicationController
         url = param_url
     end
      
-    render :json => {:title => title, :description => description, :url => url, :image_url => image_url} and return
+    render :json => {:title => title, :description => description, :url => url, :image_url => image_url, :site_name => site_name} and return
   end
 
 
@@ -141,6 +146,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:title, :url, :tag_list)
+      params.require(:link).permit(:title, :url, :description, :image_url, :site_name, :tag_list)
     end
 end

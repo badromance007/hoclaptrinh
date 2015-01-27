@@ -5,62 +5,16 @@
   <div>
       <a class="preview-link" href="<%= @link.url %>">
         <div class="_<%= @link.id %>" >
-          <img src="" class="preview-image">
+          <img src="<%= @link.image_url %>" class="preview-image">
           <div class="preview-title" style="font-weight:bold">
+            <%= @link.title %>
           </div>
-          <p class="preview-description"></p>
-          <p class="preview-url"></p>
+          <p class="preview-description"><%= @link.description %></p>
+          <p class="preview-url"><%= @link.site_name.upcase %></p>
         </div>
       </a>
   </div>
-    <script type="text/javascript">
-      // for index page
-      $( document ).on('page:load', function() {
-        // Handler for .ready() called.   
-            setTimeout(function() {
-                var text = "<%= @link.url %>";
-          
-                 
-                // send url to service for parsing
-                $.ajax('/linkpreview', {
-                    type: 'POST',
-                    data: { url: text },
-                    success: function(data,textStatus,jqXHR ) {
-                        // handle received data
-                        $( "._<%= @link.id %> > .preview-title").text(data['title']);
-                        $( "._<%= @link.id %> > .preview-description").text(data['description']);
-                        $( "._<%= @link.id %> > .preview-image").attr('src', data['image_url']);
-                        $( "._<%= @link.id %> > .preview-url").text("By " + data['url']);
-                    },
-                   // error: function() { alert("Extract link error"); }
-                });
-            }, 100);
-       
-      });
-      $( document ).ready(function() {
-        // Handler for .ready() called.   
-            setTimeout(function() {
-                var text = "<%= @link.url %>";
-                 
-                // send url to service for parsing
-                $.ajax('/linkpreview', {
-                    type: 'POST',
-                    data: { url: text },
-                    success: function(data,textStatus,jqXHR ) {
-                        // handle received data
-
-                        $( "._<%= @link.id %> > .preview-title").text(data['title']);
-                        $( "._<%= @link.id %> > .preview-description").text(data['description']);
-                        $( "._<%= @link.id %> > .preview-image").attr('src', data['image_url']);
-                        $( "._<%= @link.id %> > .preview-url").text("By " + data['url']);
-                    },
-                    //error: function() { alert("Extract link error"); }
-                });
-            }, 100);
-       
-      });
-    </script>
-
+    
     <p>Tags: <%= raw @link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <div class="btn-group">

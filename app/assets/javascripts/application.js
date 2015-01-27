@@ -33,10 +33,14 @@ $( document ).on('page:load', function() {
               success: function(data,textStatus,jqXHR ) {
                   // handle received data
                   $("#link_title").val(data['title']);
+                  $("#link_description").val(data['description']);
+                  $("#link_image_url").val(data['image_url']);
+                  $("#link_site_name").val(data['site_name']);
+
                   $("#preview-title").text(data['title']);
                   $("#preview-description").text(data['description']);
                   $("#preview-image").attr('src', data['image_url']);
-                  $("#preview-url").text("By " + data['url']);
+                  $("#preview-url").text("By " + data['site_name']);
               },
               //error: function() { alert("Extract link error"); }
           });
@@ -60,10 +64,14 @@ $( document ).ready( function() {
               success: function(data,textStatus,jqXHR ) {
                   // handle received data
                   $("#link_title").val(data['title']);
+                  $("#link_description").val(data['description']);
+                  $("#link_image_url").val(data['image_url']);
+                  $("#link_site_name").val(data['site_name']);
+                  
                   $("#preview-title").text(data['title']);
                   $("#preview-description").text(data['description']);
                   $("#preview-image").attr('src', data['image_url']);
-                  $("#preview-url").text("By " + data['url']);
+                  $("#preview-url").text("By " + data['site_name']);
               },
               //error: function() { alert("error"); }
           });
