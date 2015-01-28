@@ -2,6 +2,8 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+  FACEBOOK_APP_ID     = '869207229789039'
+  FACEBOOK_APP_SECRET = '7cd1fa00a4d971cf0c856bdf0e2f4258'
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and

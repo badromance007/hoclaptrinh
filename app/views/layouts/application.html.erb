@@ -15,7 +15,12 @@
         <nav class="collapse navbar-collapse navbar-ex1-collapse">
           <% if user_signed_in? -%>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to current_user.name, mylinks_path %></li>
+              <li>
+                <%= link_to mylinks_path do %>
+                  <%= image_tag current_user.avatar_url %>
+                  <span><%= current_user.name %></span>
+                <% end %>
+              </li>
               <li><%= link_to 'Submit link', new_link_path %></li>
               <li><%= link_to 'My Account', edit_user_registration_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
@@ -24,6 +29,7 @@
             <ul class="nav navbar-nav pull-right">
               <li><%= link_to 'Sign up', new_user_registration_path %></li>
               <li><%= link_to 'Sign in', new_user_session_path %></li>
+              <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> </li>
             </ul>
           <% end -%>
         </nav>

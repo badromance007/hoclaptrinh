@@ -52,3 +52,5 @@ gem 'simple_form', '~> 3.1.0'
 gem 'nokogiri', '~> 1.6.5'
 gem 'social-share-button', '~> 0.1.8'
 gem 'acts-as-taggable-on', '~> 3.4'
+
+gem 'omniauth-facebook', '~> 2.0.0'
