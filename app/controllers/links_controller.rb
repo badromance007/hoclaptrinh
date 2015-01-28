@@ -10,8 +10,6 @@ class LinksController < ApplicationController
     else
       @links = Link.all.order("created_at desc")
     end
-    
-    gon.links = Link.all
   end
 
   def mylinks
