@@ -6,6 +6,9 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   FACEBOOK_APP_ID     = '923652937644818'
   FACEBOOK_APP_SECRET = 'e77f4d0d4ff825b7ddc4288ab6e8c45a'
+
+  GOOGLE_APP_ID = '80584012005-vbb4mpspmuvekaquvhscik80oobs6r2u.apps.googleusercontent.com'
+  GOOGLE_APP_SECRET = '2souzChTHo60I2AzDvUCUy5K'
   config.cache_classes = false
 
   # Do not eager load code on boot.

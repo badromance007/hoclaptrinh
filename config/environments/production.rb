@@ -4,6 +4,9 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   FACEBOOK_APP_ID     = '869207229789039'
   FACEBOOK_APP_SECRET = '7cd1fa00a4d971cf0c856bdf0e2f4258'
+
+  GOOGLE_APP_ID = '80584012005-6t1bu8qrc1u8970sqh9lvn2e7nvjg4fn.apps.googleusercontent.com'
+  GOOGLE_APP_SECRET = 'kvMGC2hk1m1F3iTq78RBcj61'
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
