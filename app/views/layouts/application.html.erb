@@ -5,9 +5,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <meta content="869207229789039" property="fb:app_id" />
+  <meta content="<%= yield(:current_url) %>" property="og:url" />
 </head>
 <body>
-
+  <%= render 'layouts/facebook_sdk' %>
   <header class="navbar navbar-default" role="navigation">
     <div class="navbar-inner">
       <div class="container">
