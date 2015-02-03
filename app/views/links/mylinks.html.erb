@@ -2,24 +2,46 @@
 
 <% @user_links.each do |link| %>
   <div class="link row clearfix">
-    <h2>
-      <%= link_to link.title, link %><br>
-      <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.name %></small>
-    </h2>
+    
+    <div class="article-list">
+      <div class="article-list_item  tile post-tile">
+        <article class="article article--micro  category-wordpress ">
+          <header class="article_category">
+            <h2 class="article_category_title">
+             <a href="http://www.sitepoint.com/wordpress/"><%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></a> 
+            </h2> 
+          </header>
+          
+          <section class="article_header">
+            <h1 class="article_title">
+              <%= link_to link.title, link, "data-no-turbolink" => "" %>
+            </h1>
 
-    <div>
-      <a class="preview-link" href="<%= link.url %>">
-        <div class="_<%= link.id %>" >
-          <div class="preview-title" style="font-weight:bold">
-            <%= link.title %>
-          </div>
-          <p class="preview-description"><%= link.description %></p>
-          <p class="preview-url"><%= link.site_name.upcase %></p>
-        </div>
-      </a>
+          
+              
+            <div class="_<%= link.id %>" >
+              <p class="preview-description"><%= link.description %></p>
+              <p class="preview-url"><%= link.site_name.upcase %></p>
+            </div>
+            
+      
+
+
+            <div class="contributor article_contributor">
+              <p class="contributor_name article_author-name">by 
+                <%= link_to link.user.name, mylinks_path %>
+              </p>
+            </div>
+            
+            <div class="article_meta-data"><p class="article_pub-date">
+              <time datetime="2015-01-29 10:45:24" pubdate="">Submitted <%= time_ago_in_words(link.created_at) %> ago</time></p></div>
+            </section>
+        </article>
+      </div>
     </div>
 
-    <p>Tags: <%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
+    
 
     <div class="btn-group">
       <a class="btn btn-default btn-sm" href="<%= link.url %>">Visit Link</a>
@@ -42,8 +64,3 @@
   </div>
 <% end %>
 
-<div id="tag_cloud">
-  <% tag_cloud Link.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>
