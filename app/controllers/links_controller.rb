@@ -91,7 +91,14 @@ class LinksController < ApplicationController
     end
      
     if url ==""
-        url = param_url
+        url = params[:url]
+        start_slash = url.index('//')
+        end_slash = url.index("/", start_slash + 2) - 7
+        site_name = url.slice(start_slash + 2, end_slash)
+
+        if site_name.index("/")
+          site_name = site_name.slice(0, site_name.index("/"))
+        end
     end
      
     render :json => {:title => title, :description => description, :url => url, :image_url => image_url, :site_name => site_name} and return
