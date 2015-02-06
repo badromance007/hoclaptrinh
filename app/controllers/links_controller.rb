@@ -6,9 +6,9 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     if params[:tag]
-      @links = Link.all.order("created_at desc").tagged_with(params[:tag])
+      @links = Link.all.order("created_at desc").tagged_with(params[:tag]).page(params[:page]).per(10)
     else
-      @links = Link.all.order("created_at desc")
+      @links = Link.all.order("created_at desc").page(params[:page]).per(10)
     end
   end
 

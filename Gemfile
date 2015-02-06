@@ -58,3 +58,4 @@ gem 'omniauth-google-oauth2', '~> 0.2.6'
 
 gem 'slim', '~> 3.0.2'
 
+gem 'kaminari', '~> 0.16.2'
