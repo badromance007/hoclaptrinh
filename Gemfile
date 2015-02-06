@@ -56,3 +56,5 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'omniauth-facebook', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 
+gem 'slim', '~> 3.0.2'
+

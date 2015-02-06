@@ -1,0 +1,112 @@
+= provide(:current_title, "Trang của " + @user.name)
+= provide(:current_description, "Xuhuongit.com là nơi chia sẻ những bài viết chất lượng về kiến thức IT cũng như internet, những thông tin mới nhất về công nghệ, xu hướng và tiềm năng của những ngôn ngữ lập trình, framework hay kỹ thuật có thể dẫn đầu công nghệ trong tương lai.") 
+
+.container
+  .col-sm-8
+    h1 Link đã đăng
+    #diaries.clearfix
+      - unless @user_links.blank?
+        #posts
+          - @user_links.each do |link|
+            .link.row.clearfix
+              .article-list
+                .article-list_item.tile.post-tile
+                  article.article.article--micro.category-wordpress
+                    header.article_category
+                      h2.article_category_title
+                        = raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+                    section.article_header
+                      h1.article_title
+                        = link_to link.title, link, "data-no-turbolink" => "" 
+                      div class=("_<%= link.id %>") 
+                        p.preview-description = link.description 
+                        p.preview-url = link.site_name.upcase 
+                      .contributor.article_contributor
+                        p.contributor_name.article_author-name
+                          | by 
+                          = link_to link.user.name, "#" 
+                      .article_meta-data
+                        p.article_pub-date
+                          time datetime=("2015-01-29 10:45:24") pubdate=""  
+                            | Submitted 
+                            = time_ago_in_words(link.created_at) 
+                            | ago
+              .btn-group
+                a.btn.btn-default.btn-sm href= link.url  
+                  | Visit Link
+                = link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do 
+                  span.glyphicon.glyphicon-chevron-up
+                    = " "
+                    | Upvote 
+                    = link.get_upvotes.size 
+
+                = link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do 
+                  span.glyphicon.glyphicon-chevron-down
+                    = " "
+                    | Downvote 
+                    = link.get_downvotes.size 
+            
+                span.glyphicon
+                  = social_share_button_tag("My Site") 
+
+      - else
+        h2 Hãy viết một nhật ký học tập
+        p Hình như bạn chưa viết nhật ký học tập nào cả... Hãy viết nhật ký học tập nào!
+        button= link_to "Tạo nhật ký mới", new_diary_path
+
+  .col-sm-4
+    h1 Thông tin cá nhân
+    table.table
+      thead
+      tbody
+        tr
+          td 
+            - if @user.avatar_url
+              = image_tag @user.avatar_url, class: "avatar"
+            - else
+              - if @user.image_avatar.url
+                = image_tag @user.image_avatar.url(:small), class: "avatar"
+              - else
+                = image_tag "placeholder.png", class: "avatar"
+          td
+            h4= @user.name
+            p= @user.created_at.strftime("Tham gia từ ngày %d/%m/%Y")
+        tr
+          td Đăng nhập bởi:
+          td
+            - if @user.provider
+              = link_to  @user.provider.to_s.titleize.split(" ").first, @user.profile_url
+            - else
+              = link_to "Nhật ký mở", root_path
+        tr
+          td Số link đã đăng:
+          td 
+            = @user.links.count
+        tr
+          td Được vote:
+          td 
+            - total = 0
+            - @user.links.each do |link|
+              - total += link.get_likes.size 
+            = total
+            = " " 
+            | lần 
+            / can get the number of liker!!!
+            /- @user.diaries.first.votes_for.up.by_type(User).voters.each do | user |
+              /= user.name
+        tr
+          td Được bình luận:
+          td 
+            span
+            = " "
+            = 0
+            = " "
+            | lần 
+
+
+        tr
+          td Số ngày:
+          td
+            .label.label-warning
+              |Ngày thứ 
+              = (Time.now.to_date - @user.created_at.to_date).to_i + 1

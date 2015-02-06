@@ -12,10 +12,6 @@ class LinksController < ApplicationController
     end
   end
 
-  def mylinks
-    @user_links = Link.where(user_id: current_user).order("created_at desc")
-  end
-
   def gioithieu
   end
 

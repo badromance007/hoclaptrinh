@@ -10,7 +10,7 @@
         <article class="article article--micro  category-wordpress ">
           <header class="article_category">
             <h2 class="article_category_title">
-             <a href="http://www.sitepoint.com/wordpress/"><%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></a> 
+             <%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
             </h2> 
           </header>
           

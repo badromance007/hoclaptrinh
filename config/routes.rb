@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   resources :comments
+
+  resources :users
   
   get 'links/gioithieu'
   
 
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :links do 
     member do
       put "like", to: "links#upvote"
@@ -16,7 +18,6 @@ Rails.application.routes.draw do
 
   root :to => "links#index"
   match "linkpreview" => "links#linkpreview", :via => [:post], :as => "linkpreview"
-  match "users/mylinks" => "links#mylinks", :via => [:get], :as => "mylinks"
 
   get 'tags/:tag', to: 'links#index', as: :tag
 
