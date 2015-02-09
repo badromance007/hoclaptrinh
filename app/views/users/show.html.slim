@@ -24,7 +24,7 @@
                       .contributor.article_contributor
                         p.contributor_name.article_author-name
                           | by 
-                          = link_to link.user.name, "#" 
+                          = link_to link.user.name, user_path(link.user) 
                       .article_meta-data
                         p.article_pub-date
                           time datetime=("2015-01-29 10:45:24") pubdate=""  
@@ -77,7 +77,7 @@
             - if @user.provider
               = link_to  @user.provider.to_s.titleize.split(" ").first, @user.profile_url
             - else
-              = link_to "Nhật ký mở", root_path
+              = link_to "xuhuongit.com", root_path
         tr
           td Số link đã đăng:
           td 
