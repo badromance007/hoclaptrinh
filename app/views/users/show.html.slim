@@ -64,10 +64,7 @@
             - if @user.avatar_url
               = image_tag @user.avatar_url, class: "avatar"
             - else
-              - if @user.image_avatar.url
-                = image_tag @user.image_avatar.url(:small), class: "avatar"
-              - else
-                = image_tag "placeholder.png", class: "avatar"
+              = image_tag "placeholder.png", class: "avatar"
           td
             h4= @user.name
             p= @user.created_at.strftime("Tham gia từ ngày %d/%m/%Y")
