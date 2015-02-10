@@ -4,18 +4,18 @@
 <%= provide(:current_description, @link.description ) %>
 
 
-
+<div  class="col-md-9">
 <div class="page-header">
   <h1><a href="<%= @link.url %>"><%= @link.title %></a><br> <small>Submitted by <%= @link.user.name %></small></h1>
+  <span class="glyphicon">
+    <%= social_share_button_tag("My Site") %>
+  </span>
 </div>
   
-  <div>
-      <a class="preview-link" href="<%= @link.url %>">
-        <div class="_<%= @link.id %>" >
-          <p class="preview-description"><%= @link.description %></p>
-          <p class="preview-url"><%= @link.site_name.upcase %></p>
-        </div>
-      </a>
+  
+  <div class="_<%= @link.id %>" >
+    <p class="preview-description"><%= @link.description %></p>
+    <a href="<%= @link.url %>" class="preview-url"><%= @link.site_name.upcase %></a>
   </div>
     
     <p>Tags: <%= raw @link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
@@ -31,13 +31,10 @@
     <%= @link.get_upvotes.size %>
   <% end %>
   <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
-    <span class="glyphicon glyphicon-chevron-down">
+    <span class="glyphicon glyphicon-chevron-down"></span>
     Downvote
     <%= @link.get_downvotes.size %>
   <% end %>
-  <span class="glyphicon">
-    <%= social_share_button_tag("My Site") %>
-  </span>
 </div>
 
 <% if @link.user == current_user -%>
@@ -48,5 +45,7 @@
 <% end %>
 
 <div class="fb-comments" data-href="<%= link_url(@link) %>" data-numposts="5" data-colorscheme="light"  data-width="800" ></div>
+
+</div>
 
 
