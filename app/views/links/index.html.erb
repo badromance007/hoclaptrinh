@@ -52,13 +52,17 @@
       <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
         <span class="glyphicon glyphicon-chevron-up">
         Upvote
-        <%= link.get_upvotes.size %>
+        <% if link.get_upvotes.size != 0 %>
+          <%= link.get_upvotes.size %>
+        <% end %>
         </span>
       <% end %>
       <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
         <span class="glyphicon glyphicon-chevron-down">
         Downvote
-        <%= link.get_downvotes.size %>
+        <% if link.get_downvotes.size != 0 %>
+          <%= link.get_downvotes.size %>
+        <% end %>
         </span>
       <% end %>
       <span class="glyphicon">
