@@ -54,4 +54,46 @@
 
 </div>
 
+<div class="col-md-3">
+  <h3>Bài viết liên quan</h3>
+  <% @related_links.each do |link| %>
+    <div class="link row clearfix">
+
+      <div class="article-list">
+        <div class="article-list_item  tile post-tile">
+          <article class="article article--micro  category-wordpress ">
+            <header class="article_category">
+              <h2 class="article_category_title">
+               <%= raw link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+              </h2> 
+            </header>
+            
+            <section class="article_header">
+              <h1 class="article_title">
+                <%= link_to link.title, link, "data-no-turbolink" => "" %>
+              </h1>
+
+            
+                
+             
+        
+
+
+              <div class="contributor article_contributor">
+                <p class="contributor_name article_author-name">by 
+                  <%= link_to link.user.name, user_path(link.user) %>
+                </p>
+              </div>
+              
+              
+          </article>
+        </div>
+      </div>
+
+
+      
+    </div>
+<% end %>
+</div>
+
 
