@@ -46,6 +46,8 @@
     <%= link_to 'Edit', edit_link_path(@link), class: "btn btn-default" %>
     <%= link_to 'Destroy', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
   </div>
+<% elsif user_signed_in? %>
+  <%= link_to 'Edit Tags', edit_link_path(@link), class: "btn btn-default" %>
 <% end %>
 
 <div class="fb-comments" data-href="<%= link_url(@link) %>" data-numposts="5" data-colorscheme="light"  data-width="800" ></div>

@@ -10,35 +10,35 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.text_field :title, class: "form-control", type: "hidden" %>
-  </div>
-  <div class="form-group">
-    <%= f.text_field :description, class: "form-control", type: "hidden" %>
-  </div>
-  <div class="form-group">
-    <%= f.text_field :image_url, class: "form-control" , type: "hidden" %>
-  </div>
-  <div class="form-group">
-    <%= f.text_field :site_name, class: "form-control", type: "hidden" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :url %><br>
-    <%= f.text_field :url, class: "form-control", id: "post_content" %>
-  </div>
-  <br>
-    <div class="preview-link">
-      <div id="preview-title">
-      </div>
-      <p id="preview-description"></p>
-      <p id="preview-url"></p>
+  <% if @link.user == current_user -%>
+    <div class="form-group">
+      <%= f.text_field :title, class: "form-control", type: "hidden" %>
     </div>
-  <br>
-
+    <div class="form-group">
+      <%= f.text_field :description, class: "form-control", type: "hidden" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :image_url, class: "form-control" , type: "hidden" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :site_name, class: "form-control", type: "hidden" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :url %><br>
+      <%= f.text_field :url, class: "form-control", id: "post_content" %>
+    </div>
+    <br>
+      <div class="preview-link">
+        <div id="preview-title">
+        </div>
+        <p id="preview-description"></p>
+        <p id="preview-url"></p>
+      </div>
+    <br>
+  <% end %>
   <div class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
+    <%= f.label :tag_list, "Tags (phần cách bằng dấu phẩy)" %><br />
+    <%= f.text_field :tag_list, value: @link.tag_list.join(', ') %>
   </div>
 
   <br>
