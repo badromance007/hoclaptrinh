@@ -15,13 +15,16 @@
   <meta content="http://www.monimbus.com/wp-content/uploads/2014/01/TechnologyTrends.jpg" property="og:image" />
   <meta content="Xu hướng IT" property="og:site_name" />
   <meta content="website" property="og:type" />
+
+
+  <link rel="shortcut icon" href="assets/logo_favicon.ico" type="image/x-icon">
 </head>
 <body>
   <%= render 'layouts/facebook_sdk' %>
   <header class="navbar navbar-default" role="navigation">
     <div class="navbar-inner">
       <div class="container">
-        <div id="logo" class="navbar-brand"><%= link_to "Xuhuongit", root_path %></div>
+        <div class="navbar-brand"><%= link_to (image_tag "logo.png", id: "logo"), root_path %></div>
         <nav class="collapse navbar-collapse navbar-ex1-collapse">
           <% if user_signed_in? -%>
             <ul class="nav navbar-nav navbar-right">
