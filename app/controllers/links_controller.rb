@@ -18,7 +18,7 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
-    @related_links = Link.where.not(id: @link).order("RANDOM()").tagged_with(@link.tag_list, any: true)
+    @related_links = Link.where.not(id: @link).order("RANDOM()").tagged_with(@link.tag_list, any: true).limit(3)
   end
 
   # GET /links/new
