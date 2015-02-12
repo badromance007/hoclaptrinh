@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -59,3 +63,7 @@ gem 'omniauth-google-oauth2', '~> 0.2.6'
 gem 'slim', '~> 3.0.2'
 
 gem 'kaminari', '~> 0.16.2'
+
+group :test do
+  gem 'capybara'
+end

@@ -24,3 +24,7 @@ default: &default
 development:   
   <<: *default   
   database: hoclaptrinh
+
+test:   
+  <<: *default   
+  database: hoclaptrinh
