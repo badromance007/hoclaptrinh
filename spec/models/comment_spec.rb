@@ -8,15 +8,18 @@ RSpec.describe Comment, :type => :model do
     let(:comment) { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
 
     it "must have user_id" do
-      expect(comment).to respond_to :user_id
+      expect(comment.user_id).to be_present
+      expect(comment.user_id).to be_a Integer
     end
 
     it "must have link_id" do
-      expect(comment).to respond_to :link_id
+      expect(comment.link_id).to be_present
+      expect(comment.link_id).to be_a Integer
     end
 
     it "must have body" do
-      expect(comment).to respond_to :body
+      expect(comment.body).to be_present
+      expect(comment.body).to be_a String
     end
   end
 

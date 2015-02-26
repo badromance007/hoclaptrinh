@@ -7,27 +7,33 @@ RSpec.describe Link, :type => :model do
     let(:link) { FactoryGirl.create(:link, user_id: user.id) }
 
     it "must have user_id" do
-      expect(link).to respond_to :user_id
+      expect(link.user_id).to be_present
+      expect(link.user_id).to be_a Integer
     end
 
     it "must have title" do
-      expect(link).to respond_to :title
+      expect(link.title).to be_present
+      expect(link.title).to be_a String
     end
 
     it "must have url" do
-      expect(link).to respond_to :url
+      expect(link.title).to be_present
+      expect(link.url).to be_a String
     end
 
     it "must have description" do
-      expect(link).to respond_to :description
+      expect(link.description).to be_present
+      expect(link.description).to be_a String
     end
 
     it "must have image_url" do
-      expect(link).to respond_to :image_url
+      expect(link.image_url).to be_present
+      expect(link.image_url).to be_a String
     end
 
     it "must have site_name" do
-      expect(link).to respond_to :site_name
+      expect(link.site_name).to be_present
+      expect(link.site_name).to be_a String
     end
 
     it "must begin with no comment" do

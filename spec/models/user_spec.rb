@@ -6,11 +6,13 @@ RSpec.describe User, :type => :model do
     let(:user) { FactoryGirl.create(:user) }
 
     it "must have email" do
-      expect(user).to respond_to :email
+      expect(user.email).to be_present
+      expect(user.email).to be_a String
     end
 
     it "must have password" do
-      expect(user).to respond_to :password
+      expect(user.password).to be_present
+      expect(user.password).to be_a String
     end
 
     it "must begin with no link" do
