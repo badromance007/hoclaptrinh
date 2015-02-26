@@ -38,6 +38,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'factory_girl_rails'
+  gem 'faker'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -66,4 +67,5 @@ gem 'kaminari', '~> 0.16.2'
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
 end
