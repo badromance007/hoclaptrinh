@@ -68,6 +68,10 @@ class LinksController < ApplicationController
             start_slash = url.index('//')
             end_slash = url.index("/", start_slash + 2) - 7
             site_name = url.slice(start_slash + 2, end_slash)
+
+            if site_name.index("/")
+              site_name = site_name.slice(0, site_name.index("/"))
+            end
             #site_name =  end_slash
         elsif meta['property'] == 'og:image'
             image_url = meta['content']
