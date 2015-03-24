@@ -6,7 +6,7 @@ ruby "2.0.0"
 gem 'rails', '4.2.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'sqlite3'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -70,4 +70,8 @@ gem 'kaminari', '~> 0.16.2'
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'pg'
 end

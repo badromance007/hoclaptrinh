@@ -1,52 +1,40 @@
 require 'rails_helper'
 
-RSpec.describe Comment, :type => :model do
+describe Comment do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:link) { FactoryGirl.create(:link, user_id: user.id) }
 
-  describe "New comment" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:link) { FactoryGirl.create(:link, user_id: user.id) }
-    let(:comment) { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
-
-    it "must have user_id" do
-      expect(comment.user_id).to be_present
-      expect(comment.user_id).to be_a Integer
-    end
-
-    it "must have link_id" do
-      expect(comment.link_id).to be_present
-      expect(comment.link_id).to be_a Integer
-    end
-
-    it "must have body" do
-      expect(comment.body).to be_present
-      expect(comment.body).to be_a String
-    end
+  it "is valid with body, user_id, link_id" do
+    comment = FactoryGirl.build(:comment, user_id: user.id, link_id: link.id)
+    expect(comment).to be_valid
   end
 
-  describe "The comment" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:link) { FactoryGirl.create(:link, user_id: user.id) }
-
-    it "must has two after adding two" do
-      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
-      expect(Comment.count).to eq 2
-    end
-
-    it "after destroyed user, no comment belong to that user exists" do
-      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
-      user.destroy
-      expect(Comment.where(user_id: user.id).count).to eq 0
-    end
-
-    it "after destroyed link, no comment belong to that link exists" do
-      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
-      link.destroy
-      expect(Comment.where(link_id: link.id).count).to eq 0
-    end
+  it "is invalid without body" do
+    comment = FactoryGirl.build(:comment, user_id: user.id, link_id: link.id, body: nil)
+    expect(comment).not_to be_valid
   end
 
-  it "must begin with no record" do
+  it "is invalid without user_id" do
+    comment = FactoryGirl.build(:comment, user_id: nil, link_id: link.id)
+    expect(comment).not_to be_valid
+  end
+
+  it "is invalid without link_id" do
+    comment = FactoryGirl.build(:comment, user_id: user.id, link_id: nil)
+    expect(comment).not_to be_valid
+  end
+
+  it "is begin with no record" do
     expect(Comment.count).to eq 0
   end
 
+  it "have two after adding two" do
+    2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
+    expect(Comment.count).to eq 2
+  end
+
+  it "body length great than 3 character" do
+    comment = FactoryGirl.build(:comment, user_id: user.id, link_id: link.id, body: 'foo')
+    expect(comment).not_to be_valid
+  end
 end

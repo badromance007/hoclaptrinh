@@ -1,66 +1,83 @@
 require 'rails_helper'
 
-RSpec.describe Link, :type => :model do
+describe Link do
 
-  describe "New link" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:link) { FactoryGirl.create(:link, user_id: user.id) }
+  let(:user) { FactoryGirl.create(:user) }
 
-    it "must have user_id" do
-      expect(link.user_id).to be_present
-      expect(link.user_id).to be_a Integer
-    end
-
-    it "must have title" do
-      expect(link.title).to be_present
-      expect(link.title).to be_a String
-    end
-
-    it "must have url" do
-      expect(link.title).to be_present
-      expect(link.url).to be_a String
-    end
-
-    it "must have description" do
-      expect(link.description).to be_present
-      expect(link.description).to be_a String
-    end
-
-    it "must have image_url" do
-      expect(link.image_url).to be_present
-      expect(link.image_url).to be_a String
-    end
-
-    it "must have site_name" do
-      expect(link.site_name).to be_present
-      expect(link.site_name).to be_a String
-    end
-
-    it "must begin with no comment" do
-      expect(link.comments.count).to eq 0
-    end
-
-    it "must has two comments after adding two comments" do
-      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
-      expect(link.comments.count).to eq 2
-    end
+  it "is valid with a title, url, description, image_url, site_name, user_id" do
+    link = FactoryGirl.build(:link, user_id: user.id)
+    expect(link).to be_valid
   end
 
-  it "must begin with no record" do
+  it "is invalid without title" do
+    link = FactoryGirl.build(:link, user_id: user.id, title: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "is invalid without url" do
+    link = FactoryGirl.build(:link, user_id: user.id, url: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "is invalid without description" do
+    link = FactoryGirl.build(:link, user_id: user.id, description: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "is invalid without image_url" do
+    link = FactoryGirl.build(:link, user_id: user.id, image_url: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "is invalid without site_name" do
+    link = FactoryGirl.build(:link, user_id: user.id, site_name: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "is invalid without user_id" do
+    link = FactoryGirl.build(:link, user_id: nil)
+    expect(link).not_to be_valid
+  end
+
+  it "url is unique" do
+    FactoryGirl.create(:link, user_id: user.id, url: 'http://www.google.com')
+    link = FactoryGirl.build(:link, user_id: user.id, url: 'http://www.google.com')
+    expect(link).not_to be_valid
+  end
+
+  it "title isn't unique" do
+    FactoryGirl.create(:link, user_id: user.id, title: 'Sample title')
+    link = FactoryGirl.build(:link, user_id: user.id, title: 'Sample title')
+    expect(link).to be_valid
+  end
+
+  it "is begin witn no record" do
     expect(Link.count).to eq 0
   end
 
-  it "must has two after adding two" do
-    user = FactoryGirl.create(:user)
+  it "have two after adding two" do
     2.times { FactoryGirl.create(:link, user_id: user.id) }
     expect(Link.count).to eq 2
   end
 
-  it "after destroyed user, no link belong to that user exists" do
-    user = FactoryGirl.create(:user)
-    2.times { FactoryGirl.create(:link, user_id: user.id) }
-    user.destroy
-    expect(Link.where(user_id: user.id).count).to eq 0
-  end
+  describe 'New Link' do
+    let(:link) { FactoryGirl.create(:link, user_id: user.id) }
 
+    it "is begin with no comment" do
+      expect(link.comments.count).to eq 0
+    end
+
+    it "have two comments after adding two" do
+      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
+      expect(link.comments.count).to eq 2
+    end
+
+    it "after destroy link, no comments belong with this link exist" do
+      2.times { FactoryGirl.create(:comment, user_id: user.id, link_id: link.id) }
+      link.destroy
+      expect(Comment.where(link_id: link.id).count).to eq 0
+    end
+
+  end
 end
+
