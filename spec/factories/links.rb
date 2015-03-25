@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :link do
+    association :user
     title { Faker::Name.title }
     url { Faker::Internet.url }
     description { Faker::Lorem.paragraph }
