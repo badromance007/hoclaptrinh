@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, :type => :controller do
+describe UsersController do
 
   it "redirects to the home page upon save" do
-    subject { post :create, user: FactoryGirl.create(:user) }
-    expect(subject).to redirect_to root_url
+    post :create, user: attributes_for(:user)
+    expect(response).to redirect_to root_url
   end
 
 end

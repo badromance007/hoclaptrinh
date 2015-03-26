@@ -6,6 +6,10 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     image_url { Faker::Avatar.image }
     site_name { Faker::App.name }
+
+    factory :invalid_link do
+      url nil
+    end
   end
 
 end
