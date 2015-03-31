@@ -43,12 +43,6 @@ describe Link do
     expect(link).not_to be_valid
   end
 
-  it "title isn't unique" do
-    create(:link, title: 'Sample title')
-    link = build(:link, title: 'Sample title')
-    expect(link).to be_valid
-  end
-
   it "is begin witn no record" do
     expect(Link.count).to eq 0
   end
