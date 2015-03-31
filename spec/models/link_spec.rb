@@ -22,11 +22,6 @@ describe Link do
     expect(link).not_to be_valid
   end
 
-  it "is invalid without image_url" do
-    link = build(:link, image_url: nil)
-    expect(link).not_to be_valid
-  end
-
   it "is invalid without site_name" do
     link = build(:link, site_name: nil)
     expect(link).not_to be_valid
