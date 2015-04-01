@@ -34,7 +34,7 @@
 
 
             <div class="contributor article_contributor">
-              <p class="contributor_name article_author-name">by 
+              <p class="contributor_name article_author-name">bởi 
                 <%= link_to link.user.name, user_path(link.user) %>
               </p>
             </div>
@@ -48,22 +48,22 @@
 
 
     <div class="btn-group">
-      <a class="btn btn-default btn-sm" href="<%= link.url %>" target='_blank'>Visit Link</a>
+      <a class="btn btn-default btn-sm" href="<%= link.url %>" target='_blank'>Xem nguồn</a>
       <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-chevron-up">
-        Upvote
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        Thích
         <% if link.get_upvotes.size != 0 %>
           <%= link.get_upvotes.size %>
         <% end %>
-        </span>
+        
       <% end %>
       <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-chevron-down">
-        Downvote
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        Không thích
         <% if link.get_downvotes.size != 0 %>
           <%= link.get_downvotes.size %>
         <% end %>
-        </span>
+        
       <% end %>
       <span class="glyphicon">
         <%= social_share_button_tag("My Site", :url => link_url(link)) %>

@@ -6,7 +6,7 @@
 
 <div  class="col-md-9">
 <div class="page-header">
-  <h1><a href="<%= @link.url %>" target='_blank'><%= @link.title %></a><br> <small>Submitted by <%= @link.user.name %></small></h1>
+  <h1><a href="<%= @link.url %>" target='_blank'><%= @link.title %></a><br> <small>Được chia sẻ bởi <%= @link.user.name %></small></h1>
   <span class="glyphicon">
     <%= social_share_button_tag("My Site") %>
   </span>
@@ -21,20 +21,20 @@
     <p>Tags: <%= raw @link.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <div class="btn-group">
-  <%= link_to 'Visit URL', @link.url, class: "btn btn-primary", target: '_blank' %>
+  <%= link_to 'Xem nguồn', @link.url, class: "btn btn-primary", target: '_blank' %>
 </div>
 
 <div class="btn-group pull-right">
   <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
     <span class="glyphicon glyphicon-chevron-up"></span>
-    Upvote
+    Thích
     <% if @link.get_upvotes.size != 0 %>
       <%= @link.get_upvotes.size %>
     <% end %>
   <% end %>
   <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
     <span class="glyphicon glyphicon-chevron-down"></span>
-    Downvote
+    Không thích
     <% if @link.get_downvotes.size != 0 %>
       <%= @link.get_downvotes.size %>
     <% end %>
@@ -43,8 +43,8 @@
 
 <% if @link.user == current_user -%>
   <div class="btn-group">
-    <%= link_to 'Edit', edit_link_path(@link), class: "btn btn-default" %>
-    <%= link_to 'Destroy', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+    <%= link_to 'Chỉnh sửa', edit_link_path(@link), class: "btn btn-default" %>
+    <%= link_to 'Xóa', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
   </div>
 <% elsif user_signed_in? %>
   <%= link_to 'Edit Tags', edit_link_path(@link), class: "btn btn-default" %>

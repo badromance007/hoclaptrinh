@@ -33,20 +33,20 @@
                             | ago
               .btn-group
                 a.btn.btn-default.btn-sm href= link.url  
-                  | Visit Link
+                  | Xem nguồn
                 = link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do 
                   span.glyphicon.glyphicon-chevron-up
-                    = " "
-                    | Upvote 
-                    - if link.get_upvotes.size != 0
-                      = link.get_upvotes.size 
+                  = " "
+                  | Thích 
+                  - if link.get_upvotes.size != 0
+                    = link.get_upvotes.size 
 
                 = link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do 
                   span.glyphicon.glyphicon-chevron-down
-                    = " "
-                    | Downvote 
-                    - if link.get_downvotes.size != 0
-                      = link.get_downvotes.size 
+                  = " "
+                  | Không thích 
+                  - if link.get_downvotes.size != 0
+                    = link.get_downvotes.size 
             
                 span.glyphicon
                   = social_share_button_tag("My Site") 

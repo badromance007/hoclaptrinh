@@ -24,7 +24,7 @@
       <%= f.text_field :site_name, class: "form-control", type: "hidden" %>
     </div>
     <div class="form-group">
-      <%= f.label :url %><br>
+      <%= f.label :url, "Hãy copy và dán link của bạn vào đây" %><br>
       <%= f.text_field :url, class: "form-control", id: "post_content" %>
     </div>
     <br>
@@ -37,13 +37,13 @@
     <br>
   <% end %>
   <div class="field">
-    <%= f.label :tag_list, "Tags (phần cách bằng dấu phẩy)" %><br />
+    <%= f.label :tag_list, "Tags (phân cách bằng dấu phẩy)" %><br />
     <%= f.text_field :tag_list, value: @link.tag_list.join(', ') %>
   </div>
 
   <br>
   <div class="form-group">
-    <%= f.submit "Submit", class: "btn btn-lg btn-primary" %>
+    <%= f.submit "Chia sẻ", class: "btn btn-lg btn-primary" %>
   </div>
 
 <% end %>

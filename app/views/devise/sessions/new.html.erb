@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2>Đăng nhập</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -8,18 +8,18 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :password %>
+    <%= f.label :password, "Mật khẩu" %>
     <%= f.password_field :password, class: "form-control", required: false %>
   </div>
 
   <div class="checkbox">
     <label>
-    <%= f.check_box :remember_me, required: false, as: :boolean if devise_mapping.rememberable? %> Remember Me
+    <%= f.check_box :remember_me, required: false, as: :boolean if devise_mapping.rememberable? %> Ghi nhớ mật khẩu
     </label>
   </div>
 
   <div class="form-group">
-    <%= f.submit "Sign In", class: "btn btn-primary" %>
+    <%= f.submit "Đăng nhập", class: "btn btn-primary" %>
   </div>
 <% end %>
 
